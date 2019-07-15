@@ -1,5 +1,8 @@
 import { Component } from "@angular/core";
 import { DataServiceService } from "src/app/services/dataService.service";
+
+import { Animation } from '@ionic/core'
+
 @Component({
   selector: "app-home",
   templateUrl: "home.page.html",
