@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Flip } from 'number-flip';
+import { Animation } from '@ionic/core'
 
 @Component({
   selector: 'app-home',
