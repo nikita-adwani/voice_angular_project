@@ -9,6 +9,6 @@ export class DataServiceService {
   constructor(private http: HttpClient) {}
   dataUrl = environment.dataURL;
   getStudentDetails(input) {
-    return this.http.get(this.dataUrl + "/" + input);
+    return this.http.get(this.dataUrl +"/"+ input);
   }
 }

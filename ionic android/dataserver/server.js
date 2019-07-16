@@ -31,7 +31,7 @@ http
         let filteredData = []
             //const studentData = studentsData.getStudentDetail;
         if (studentsData && studentsData.getStudentDetail) {
-            studentsData.getStudentDetail.forEach(function(item) {
+            filteredData = studentsData.getStudentDetail.filter(function(item) {
                 if (item.FirstName === input) {
                     let returnObj = {
                         contactNumber: item.StudentsContactNo,
@@ -45,7 +45,8 @@ http
                         lastName: item.Last_name,
                         year: item.Year
                     }
-                    filteredData.push(returnObj);
+
+                    return returnObj;
                 }
             });
 
