@@ -57,7 +57,7 @@ export class HomePage {
   }
 
   getStudentDetials() {
-    const input = "Aakash";
+    const input = "Nikita";
     this.dataService.getStudentDetails(input).subscribe(res => {
       console.log(res);
     });

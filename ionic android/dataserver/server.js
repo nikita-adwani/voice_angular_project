@@ -2,6 +2,10 @@ var http = require("http");
 const fs = require("fs");
 
 let studentsData = [];
+let errorObject = {
+    error: "Not Found",
+    msg: "The details you were looking for was not found"
+}
 fs.readFile("./studentData.json", (err, data) => {
     if (err) {
         console.error(err);
@@ -24,24 +28,32 @@ http
         let input = (req.url.split("/"))[1];
 
         console.log(input, req.url)
-        const studentData = studentsData.getStudentDetail;
-        studentData.filter(function(item) {
-            if (item.FirstName === input) {
-                let returnObj = {
-                    contactNumber: item.StudentsContactNo,
-                    dob: item.dob,
-                    father: item.Fathers_name,
-                    fatherContactNumber: item.FathersContactNo,
-                    firstName: item.FirstName,
-                    gender: item.Gender,
-                    id: item.MasterId,
-                    imageName: item.ImgName,
-                    lastName: item.Last_name,
-                    year: item.Year
+        let filteredData = []
+            //const studentData = studentsData.getStudentDetail;
+        if (studentsData && studentsData.getStudentDetail) {
+            studentsData.getStudentDetail.forEach(function(item) {
+                if (item.FirstName === input) {
+                    let returnObj = {
+                        contactNumber: item.StudentsContactNo,
+                        dob: item.dob,
+                        father: item.Fathers_name,
+                        fatherContactNumber: item.FathersContactNo,
+                        firstName: item.FirstName,
+                        gender: item.Gender,
+                        id: item.MasterId,
+                        imageName: item.ImgName,
+                        lastName: item.Last_name,
+                        year: item.Year
+                    }
+                    filteredData.push(returnObj);
                 }
-                res.write(JSON.stringify(returnObj));
-            }
-        });
+            });
+
+            res.write(JSON.stringify(filteredData));
+
+        } else {
+            res.write(JSON.stringify(errorObject));
+        }
         res.end(); //end the response
     })
     .listen(8081); //the server object listens on port 8080
