@@ -68,7 +68,7 @@ export class HomePage {
     // 'speak.this("Hii, I am Databot . I am here to help you. you can talk to me now.")';
     // saySomething.this.speak("Hii, I am Databot . I am here to help you. you can talk to me now.");
     if ("webkitSpeechRecognition" in window) {
-      var speechRecognizer = new webkitSpeechRecognition();
+      var speechRecognizer = new  this.webkitSpeechRecognition();
       speechRecognizer.continuous = true; //Controls whether continuous results are returned for each recognition, or only a single result.
       speechRecognizer.interimResults = true; //Controls whether interim results should be returned (true) or not (false.) Interim results are results that are not yet final
       speechRecognizer.lang = "en-IN";
