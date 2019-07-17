@@ -30,30 +30,48 @@ http
         console.log(input, req.url)
         let filteredData = []
             //const studentData = studentsData.getStudentDetail;
-        if (studentsData && studentsData.getStudentDetail) {
-            studentsData.getStudentDetail.forEach(function(item) {
+        if (studentsData || studentsData.getStudentDetail) {
+            filteredData = studentsData.getStudentDetail.filter(function(item) {
                 if (item.FirstName === input) {
-                    let returnObj = {
-                        contactNumber: item.StudentsContactNo,
-                        dob: item.dob,
-                        father: item.Fathers_name,
-                        fatherContactNumber: item.FathersContactNo,
-                        firstName: item.FirstName,
-                        gender: item.Gender,
-                        id: item.MasterId,
-                        imageName: item.ImgName,
-                        lastName: item.Last_name,
-                        year: item.Year
-                    }
-                    filteredData.push(returnObj);
+                    // let returnObj = {
+                    //     contactNumber: item.StudentsContactNo,
+                    //     dob: item.dob,
+                    //     father: item.Fathers_name,
+                    //     fatherContactNumber: item.FathersContactNo,
+                    //     firstName: item.FirstName,
+                    //     gender: item.Gender,
+                    //     id: item.MasterId,
+                    //     imageName: item.ImgName,
+                    //     lastName: item.Last_name,
+                    //     year: item.Year
+                    // }
+                    return filteredData;
                 }
+                console.log(filteredData);
+            });
+            let mappedData = filteredData.map(function(items) {
+                return {
+                    contactNumber: items.StudentsContactNo,
+                    dob: items.dob,
+                    father: items.Fathers_name,
+                    fatherContactNumber: items.FathersContactNo,
+                    firstName: items.FirstName,
+                    gender: items.Gender,
+                    id: items.MasterId,
+                    imageName: items.ImgName,
+                    lastName: items.Last_name,
+                    year: items.Year
+                }
+
             });
 
-            res.write(JSON.stringify(filteredData));
+            res.write(JSON.stringify(mappedData));
 
         } else {
             res.write(JSON.stringify(errorObject));
         }
-        res.end(); //end the response
+
+        res.end(); //end the response  
     })
-    .listen(8081); //the server object listens on port 8080
+
+.listen(8081); //the server object listens on port 8081
