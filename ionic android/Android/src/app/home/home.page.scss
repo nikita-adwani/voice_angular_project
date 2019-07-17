@@ -1,4 +1,4 @@
-$bgColor: white;
+$bgColor: orange;
 .frame {
     position: absolute;
     top: 50%;
@@ -139,13 +139,13 @@ $bgColor: white;
 
 @keyframes dot {
     0% {
-        transform: translateY(5px);
+        transform: translateY(3px);
     }
     50% {
-        transform: translateY(-5px);
+        transform: translateY(-3px);
     }
     100% {
-        transform: translateY(5px)
+        transform: translateY(3px)
     }
 }
 
