@@ -221,6 +221,7 @@ export class HomePage {
           tempIntent["response"] = tempIntent["response"].replace("Bye", found);
           console.log("found", found, tempIntent);
         }
+        
         currentIntent.push(tempIntent);
       }
     });
