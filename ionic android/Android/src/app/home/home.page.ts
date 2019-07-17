@@ -1,11 +1,8 @@
 import { Component } from "@angular/core";
 import { DataServiceService } from "src/app/services/dataService.service";
 
-<<<<<<< HEAD
 
-=======
 import { Animation } from "@ionic/core";
->>>>>>> 036f2f30f170ec3726550f3b793c4d1838b98a67
 
 @Component({
   selector: "app-home",
@@ -146,10 +143,8 @@ export class HomePage {
           "</span>";
       };
 
-<<<<<<< HEAD
 
 
-=======
       speechRecognizer.onerror = function(event) {};
     } else {
       this.resultDiv.innerHTML =
@@ -218,4 +213,3 @@ export class HomePage {
     btn.classList.remove("mic-animate");
   }
 }
->>>>>>> 036f2f30f170ec3726550f3b793c4d1838b98a67
