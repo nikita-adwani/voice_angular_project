@@ -191,6 +191,7 @@ export class HomePage {
 
       // msg.voice = voices[8]; // try changing the number and hear different voices.
       // msg.voiceURI = "native";
+<<<<<<< HEAD
       //  msg.default = false;
       msg.lang = "en-GB";
       //  msg.localService = false;
@@ -199,6 +200,16 @@ export class HomePage {
       msg.volume = 1; // 0 to 1
       msg.rate = 1; // 0.1 to 10
       msg.pitch = 0; //0 to 2
+=======
+    //  msg.default = false;
+    msg["lang"] = "en-GB";
+    //  msg.localService = false;
+     msg["name"] = "Google UK English Female";
+     msg["voiceURI"] = "Google UK English Female";
+      msg["volume"] = 1; // 0 to 1
+      msg["rate"] = 1; // 0.1 to 10
+      msg["pitch"] = 0; //0 to 2
+>>>>>>> b9fd8cc8ada1fda56a8b8e31a7ee929dba44ef4e
 
       console.log(speechresult);
       window.speechSynthesis.speak(msg);
