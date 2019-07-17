@@ -13,9 +13,12 @@ export class HomePage {
   webkitSpeechRecognition: any;
   mappedData: any;
   public intentTypes: any;
+  // public speak :any;
 
   @ViewChild("resultDiv") resultDiv: ElementRef;
 
+
+  
   constructor(public dataService: DataServiceService) {
     this.intentTypes = [
       {
@@ -50,6 +53,7 @@ export class HomePage {
     console.log(this.intentTypes);
   }
   ngOnInit(): void {
+    
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
   }
@@ -63,7 +67,7 @@ export class HomePage {
       let res = resObj;
 
       this.saySomething(resObj["speech"]);
-      // if (res.length > 1) {
+       // if (res.length > 1) {
       //  speech = "I found " + res.length + " students named " + studentName;
       //   this.saySomething(speech);
 
@@ -94,15 +98,14 @@ export class HomePage {
 
   startConversing() {
     let classThis = this;
-
-    // 'speak.this("Hii, I am Databot . I am here to help you. you can talk to me now.")';
-    // saySomething.this.speak("Hii, I am Databot . I am here to help you. you can talk to me now.");
-
+    // classThis.saySomething(
+    //   "Hi, I am Databot . Welcome to SSISM . I am here to help you . you can talk to me now."
+    // );
+    // saySomething.stop();
     if ("webkitSpeechRecognition" in window) {
-      // speak("Hii, I am Databot . I am here to help you. you can talk to me now.");
-
       var speechRecognizer = new webkitSpeechRecognition();
-      // classThis.saySomething.speak("hiii how is uu????");
+      //  classThis.saySomething("Hi, I am Databot . Welcome to SSISM . I am here to help you . you can talk to me now.");
+
       speechRecognizer.continuous = true; //Controls whether continuous results are returned for each recognition, or only a single result.
       speechRecognizer.interimResults = true; //Controls whether interim results should be returned (true) or not (false.) Interim results are results that are not yet final
       speechRecognizer.lang = "en-IN";
@@ -175,10 +178,12 @@ export class HomePage {
         "Your browser is not supported. If google chrome, please upgrade!";
     }
   }
+  saySomethingspeak(arg0: string): any {
+    throw new Error("Method not implemented.");
+  }
 
   saySomething(speechresult) {
     let msg = new SpeechSynthesisUtterance(speechresult);
-
     setTimeout(() => {
       console.log(window.speechSynthesis.getVoices());
 
@@ -186,11 +191,11 @@ export class HomePage {
 
       // msg.voice = voices[8]; // try changing the number and hear different voices.
       // msg.voiceURI = "native";
-    //  msg.default = false;
-    msg.lang = "en-GB";
-    //  msg.localService = false;
-    //  msg.name = "Google UK English Female";
-     msg.voiceURI = "Google UK English Female";
+      //  msg.default = false;
+      msg.lang = "en-GB";
+      //  msg.localService = false;
+      //  msg.name = "Google UK English Female";
+      msg.voiceURI = "Google UK English Female";
       msg.volume = 1; // 0 to 1
       msg.rate = 1; // 0.1 to 10
       msg.pitch = 0; //0 to 2
@@ -221,7 +226,7 @@ export class HomePage {
           tempIntent["response"] = tempIntent["response"].replace("Bye", found);
           console.log("found", found, tempIntent);
         }
-        
+
         currentIntent.push(tempIntent);
       }
     });
