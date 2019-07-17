@@ -1,7 +1,6 @@
 import { Component, ElementRef, ViewChild } from "@angular/core";
 import { DataServiceService } from "src/app/services/dataService.service";
 
-
 import { Animation } from "@ionic/core";
 
 @Component({
@@ -9,8 +8,6 @@ import { Animation } from "@ionic/core";
   templateUrl: "home.page.html",
   styleUrls: ["home.page.scss"]
 })
-
-
 export class HomePage {
   window: any = window;
   webkitSpeechRecognition: any;
@@ -55,9 +52,7 @@ export class HomePage {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-   
   }
- 
 
   getStudentDetails(studentName) {
     // console.log(input);
@@ -70,7 +65,7 @@ export class HomePage {
       this.saySomething(resObj["speech"]);
       // if (res.length > 1) {
       //  speech = "I found " + res.length + " students named " + studentName;
-      //   this.saySomething(speech); 
+      //   this.saySomething(speech);
 
       //   res.forEach(item => {
       //     let speech = item.firstName + " " + item.lastName + ",";
@@ -96,7 +91,6 @@ export class HomePage {
       // }
     });
   }
-  
 
   startConversing() {
     let classThis = this;
@@ -175,8 +169,6 @@ export class HomePage {
           "</span>";
       };
 
-
-
       speechRecognizer.onerror = function(event) {};
     } else {
       classThis.resultDiv.nativeElement.innerHTML =
@@ -192,8 +184,13 @@ export class HomePage {
 
       let voices = window.speechSynthesis.getVoices();
 
-      msg.voice = voices[8]; // try changing the number and hear different voices.
+      // msg.voice = voices[8]; // try changing the number and hear different voices.
       // msg.voiceURI = "native";
+    //  msg.default = false;
+    msg.lang = "en-GB";
+    //  msg.localService = false;
+    //  msg.name = "Google UK English Female";
+     msg.voiceURI = "Google UK English Female";
       msg.volume = 1; // 0 to 1
       msg.rate = 1; // 0.1 to 10
       msg.pitch = 0; //0 to 2
