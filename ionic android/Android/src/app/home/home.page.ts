@@ -46,6 +46,7 @@ export class HomePage {
           input: ["give", "details", "student", "named", "what", "name", "who"],
           response: "Give me a second. I think you are looking for "
         }
+        
       ]
       console.log(this.intentTypes)
 
@@ -64,11 +65,20 @@ export class HomePage {
   }
 
   startConversing() {
+
+    
       let classThis = this;
+      
     // 'speak.this("Hii, I am Databot . I am here to help you. you can talk to me now.")';
     // saySomething.this.speak("Hii, I am Databot . I am here to help you. you can talk to me now.");
+
+      
     if ("webkitSpeechRecognition" in window) {
-      var speechRecognizer = new  this.webkitSpeechRecognition();
+      
+      // speak("Hii, I am Databot . I am here to help you. you can talk to me now.");
+      
+      var speechRecognizer = new webkitSpeechRecognition();
+      // classThis.saySomething.speak("hiii how is uu????");
       speechRecognizer.continuous = true; //Controls whether continuous results are returned for each recognition, or only a single result.
       speechRecognizer.interimResults = true; //Controls whether interim results should be returned (true) or not (false.) Interim results are results that are not yet final
       speechRecognizer.lang = "en-IN";
@@ -120,11 +130,11 @@ export class HomePage {
             interimTranscripts += transcript;
           }
         }
-        // this.resultDiv.innerHTML =
-        //   finalTranscripts +
-        //   '<span style="color:#999">' +
-        //   interimTranscripts +
-        //   "</span>";
+        this.resultDiv.innerHTML =
+          finalTranscripts +
+          '<span style="color:#999">' +
+          interimTranscripts +
+          "</span>";
       };
 
       speechRecognizer.onerror = function(event) {};
@@ -136,6 +146,7 @@ export class HomePage {
 
   saySomething(speechresult) {
     let msg = new SpeechSynthesisUtterance(speechresult);
+   
     setTimeout(() => {
       console.log(window.speechSynthesis.getVoices());
 
