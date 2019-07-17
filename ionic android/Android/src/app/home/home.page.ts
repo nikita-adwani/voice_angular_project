@@ -67,7 +67,7 @@ export class HomePage {
 
       if (res.length > 1) {
        speech = "I found " + res.length + " students named " + studentName;
-        this.saySomething(speech);
+        this.saySomething(speech); 
 
         res.forEach(item => {
           let speech = item.firstName + " " + item.lastName + ",";
