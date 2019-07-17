@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from "@angular/core";
 import { DataServiceService } from "src/app/services/dataService.service";
 
+
 import { Animation } from "@ionic/core";
 
 @Component({
@@ -8,6 +9,8 @@ import { Animation } from "@ionic/core";
   templateUrl: "home.page.html",
   styleUrls: ["home.page.scss"]
 })
+
+
 export class HomePage {
   window: any = window;
   webkitSpeechRecognition: any;
@@ -52,8 +55,9 @@ export class HomePage {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    // this.getStudentDetials();
+   
   }
+ 
 
   getStudentDetails(studentName) {
     // console.log(input);
@@ -89,6 +93,7 @@ export class HomePage {
       }
     });
   }
+  
 
   startConversing() {
     let classThis = this;
@@ -166,6 +171,8 @@ export class HomePage {
           interimTranscripts +
           "</span>";
       };
+
+
 
       speechRecognizer.onerror = function(event) {};
     } else {
