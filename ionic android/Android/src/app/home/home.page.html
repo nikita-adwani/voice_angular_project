@@ -7,7 +7,10 @@
 </ion-header>
 
 <ion-content>
-    <div class="frame">
+
+    <div id="resultDiv" #resultDiv></div>
+
+    <div class="frame" (click)=startConversing() class="mic" id="micButton">
         <input type="checkbox" id="cb-1" name="cb" class="checkbox">
         <label for="cb-1" class="label"></label>
         <div class="microphone">
