@@ -12,7 +12,7 @@ export class HomePage {
   window: any = window;
   webkitSpeechRecognition: any;
 
-  public intentTypes:any;
+  public intentTypes:any;  
 
   resultDiv = document.getElementById("result");
 
@@ -53,15 +53,15 @@ export class HomePage {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    this.getStudentDetials();
+  //  this.getStudentDetials();
   }
 
-  getStudentDetials() {
-    const input = "Nikita";
+  getStudentDetials(input) {
     this.dataService.getStudentDetails(input).subscribe(res => {
       console.log(res);
     });
   }
+  
 
   startConversing() {
       let classThis = this;
@@ -105,6 +105,8 @@ export class HomePage {
               replyIntent[0].intent === "detailIntent"
             ) {
               studentName = classThis.getStudentName(inputWords);
+
+              classThis.getStudentDetials(studentName);
               // ---- check yesterday code
               let text = "";
             }

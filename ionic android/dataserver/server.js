@@ -28,8 +28,9 @@ http
         let input = (req.url.split("/"))[1];
 
         console.log(input, req.url)
-        let filteredData = []
-            //const studentData = studentsData.getStudentDetail;
+        let filteredData = [];
+        let mappedData = [];
+        //const studentData = studentsData.getStudentDetail;
         if (studentsData || studentsData.getStudentDetail) {
             filteredData = studentsData.getStudentDetail.filter(function(item) {
                 if (item.FirstName === input) {
@@ -49,7 +50,7 @@ http
                 }
                 console.log(filteredData);
             });
-            let mappedData = filteredData.map(function(items) {
+            mappedData = filteredData.map(function(items) {
                 return {
                     contactNumber: items.StudentsContactNo,
                     dob: items.dob,
@@ -65,9 +66,20 @@ http
 
             });
 
-            res.write(JSON.stringify(mappedData));
+            // res.write(JSON.stringify(mappedData));
 
+        }
+        if (mappedData.length > 1) {
+            // res.write("hii");
+            let responseObj = {
+                type: "studentData",
+                speech: "I found more than 1, " + input + ", which one do you want",
+                data: mappedData
+            }
+            res.write(JSON.stringify(responseObj));
+            console.log("hii")
         } else {
+
             res.write(JSON.stringify(errorObject));
         }
 
