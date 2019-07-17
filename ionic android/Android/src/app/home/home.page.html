@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-toolbar color="blue">
+    <ion-toolbar>
         <ion-title>
             Welcome to SSISM
         </ion-title>
@@ -7,20 +7,13 @@
 </ion-header>
 
 <ion-content>
-    <div id="resultDiv" #resultDiv></div>
-
-    <div class="frame" (click)=startConversing() class="mic" id="micButton">
-        <input type="checkbox" id="cb-1" name="cb" class="checkbox" />
+    <div class="frame">
+        <input type="checkbox" id="cb-1" name="cb" class="checkbox">
         <label for="cb-1" class="label"></label>
         <div class="microphone">
-            <svg width="100px" height="100px">
-                <circle class="circle" cx="50" cy="50" r="47" />
-            </svg>
-
-
             <svg width="100px" height="100px" viewBox="0 0 100 100">
-          <circle class="circle" cx="50" cy="50" r="47" />
-        </svg>
+                <circle class="circle" cx="50" cy="50" r="47"/>
+            </svg>
             <div class="icon">
                 <div class="body">
                     <div class="fill"></div>
@@ -32,10 +25,7 @@
                 <div class="dot dot-1"></div>
                 <div class="dot dot-2"></div>
                 <div class="dot dot-3"></div>
-                <div class="ion-padding"></div>
             </div>
         </div>
     </div>
-
-
 </ion-content>
