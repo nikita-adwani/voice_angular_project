@@ -19,6 +19,7 @@ http
     .createServer(function(req, res) {
         res.setHeader("Access-Control-Allow-Origin", "*");
         res.setHeader("Access-Control-Allow-Credentials", "true");
+        res.setHeader('Content-Type', 'application/json');
         res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
         res.setHeader(
             "Access-Control-Allow-Headers",

@@ -62,35 +62,38 @@ export class HomePage {
   getStudentDetails(studentName) {
     // console.log(input);
     let speech = "";
-    this.dataService.getStudentDetails(studentName).subscribe(res => {
-      console.log(res);
+    this.dataService.getStudentDetails(studentName).subscribe(resObj => {
+      console.log(resObj);
 
-      if (res.length > 1) {
-       speech = "I found " + res.length + " students named " + studentName;
-        this.saySomething(speech); 
+      let res = resObj;
 
-        res.forEach(item => {
-          let speech = item.firstName + " " + item.lastName + ",";
-          this.saySomething(speech);
-        });
-      }
+      this.saySomething(resObj["speech"]);
+      // if (res.length > 1) {
+      //  speech = "I found " + res.length + " students named " + studentName;
+      //   this.saySomething(speech); 
 
-      if (res.length === 1) {
-       speech =
-          "I found 1 student named " +
-          studentName +
-          ", " +
-          res[0].firstName +
-          " " +
-          res[0].lastName;
-        this.saySomething(speech);
-      }
+      //   res.forEach(item => {
+      //     let speech = item.firstName + " " + item.lastName + ",";
+      //     this.saySomething(speech);
+      //   });
+      // }
 
-      if (res.length === 0) {
-         speech =
-          "I did not find any students with the name "+ studentName +", please try again.";
-        this.saySomething(speech);
-      }
+      // if (res.length === 1) {
+      //  speech =
+      //     "I found 1 student named " +
+      //     studentName +
+      //     ", " +
+      //     res[0].firstName +
+      //     " " +
+      //     res[0].lastName;
+      //   this.saySomething(speech);
+      // }
+
+      // if (res.length === 0) {
+      //    speech =
+      //     "I did not find any students with the name "+ studentName +", please try again.";
+      //   this.saySomething(speech);
+      // }
     });
   }
   
