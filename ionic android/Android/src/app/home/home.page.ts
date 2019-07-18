@@ -19,6 +19,7 @@ export class HomePage {
 
   @ViewChild("resultDiv") resultDiv: ElementRef;
   dataServiceService: any;
+  getUserDeatils: any;
 
   constructor(public dataService: DataServiceService) {
     this.intentTypes = [
@@ -80,17 +81,11 @@ export class HomePage {
   }
 
   getStudentDetails(studentName) {
-    // console.log(input);
-    this.dataService.getStudentDetails(this.searchName).subscribe(input=>{
-      this.searchName =input;
-      console.log(input)
-    })
     let speech = "";
-    this.dataService.getStudentDetails((studentName.toLowerCase())).subscribe(resObj => {
-      console.log(resObj);
-
+    this.dataService.getStudentDetails((studentName.toLowerCase())).subscribe((resObj:any) => {
+      this.getUserDeatils = resObj.data;
+      console.log(this.getUserDeatils)
       let res = resObj;
-
       this.saySomething(resObj["speech"]);
     });
   }
