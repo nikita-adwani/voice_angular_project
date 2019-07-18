@@ -2,7 +2,7 @@ import { Component, ElementRef, ViewChild } from "@angular/core";
 import { DataServiceService } from "src/app/services/dataService.service";
 
 import { Animation } from "@ionic/core";
-import { IWindow } from '../speechInterface';
+import { IWindow } from "../speechInterface";
 
 @Component({
   selector: "app-home",
@@ -14,7 +14,7 @@ export class HomePage {
   webkitSpeechRecognition: any;
   mappedData: any;
   public intentTypes: any;
-  searchName :any;
+  searchName: any;
   // public speak :any;
 
   @ViewChild("resultDiv") resultDiv: ElementRef;
@@ -48,32 +48,42 @@ export class HomePage {
       },
       {
         intent: "detailIntent",
-        input: ["give", "details", "student", "named", "what", "name", "who","information"],
-        response: "Give me a second. I think you are looking for "
-      },
-      {
-        intent: "ignoreIntent",
         input: [
           "give",
           "details",
-          "about",
-          "all",
-          "show",
-          "me",
-          "the",
-          "of",
-          "in",
-          "can",
-          "please",
-          "tell",
-          "information",
-          "named","name",
-          "what","who"
-        ]
+          "student",
+          "named",
+          "what",
+          "name",
+          "who",
+          "information"
+        ],
+        response: "Give me a second. I think you are looking for "
       }
     ];
     console.log(this.intentTypes);
   }
+  ignoreWordsArray = [
+    "give",
+    "details",
+    "about",
+    "all",
+    "show",
+    "me",
+    "the",
+    "of",
+    "in",
+    "can",
+    "please",
+    "tell",
+    "information",
+    "named",
+    "name",
+    "what",
+    "who",
+    "and","cave", "related", "to","something", "is", "not", "ignore","detailed"
+  ];
+
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
@@ -82,12 +92,14 @@ export class HomePage {
 
   getStudentDetails(studentName) {
     let speech = "";
-    this.dataService.getStudentDetails((studentName.toLowerCase())).subscribe((resObj:any) => {
-      this.getUserDeatils = resObj.data;
-      console.log(this.getUserDeatils)
-      let res = resObj;
-      this.saySomething(resObj["speech"]);
-    });
+    this.dataService
+      .getStudentDetails(studentName.toLowerCase())
+      .subscribe((resObj: any) => {
+        this.getUserDeatils = resObj.data;
+        console.log(this.getUserDeatils);
+        let res = resObj;
+        this.saySomething(resObj["speech"]);
+      });
   }
 
   startConversing() {
@@ -97,7 +109,7 @@ export class HomePage {
     // );
     // saySomething.stop();
     if ("webkitSpeechRecognition" in window) {
-      const {webkitSpeechRecognition} : IWindow = <IWindow>window;
+      const { webkitSpeechRecognition }: IWindow = <IWindow>window;
       var speechRecognizer = new webkitSpeechRecognition();
       //  classThis.saySomething("Hi, I am Databot . Welcome to SSISM . I am here to help you . you can talk to me now.");
 
@@ -125,8 +137,6 @@ export class HomePage {
           console.log(classThis.intentTypes);
           foundIntent = classThis.getIntent(inputWords, classThis.intentTypes);
           console.log(foundIntent);
-
-          // transcript.replace("\n", "<br>");
           if (event.results[i].isFinal && foundIntent.length) {
             console.log(foundIntent);
             let replyIntent = Array.from(foundIntent);
@@ -183,10 +193,6 @@ export class HomePage {
       console.log(window.speechSynthesis.getVoices());
 
       let voices = window.speechSynthesis.getVoices();
-
-      // msg.voice = voices[8]; // try changing the number and hear different voices.
-      // msg.voiceURI = "native";
-      //  msg.default = false;
       msg["lang"] = "en-GB";
       //  msg.localService = false;
       msg["name"] = "Google UK English Female";
@@ -230,7 +236,21 @@ export class HomePage {
 
   getStudentName(inputWords) {
     //write logic to remove unwanted words to get to the name of the student
-    return inputWords[inputWords.length - 1];
+    // if (inputWords === this.ignoreWordsArray) {
+    //   // console.log(inputWords);
+    //   let ignoreList = inputWords.ignoreCase;
+    //   console.log(ignoreList);
+    //   return ignoreList;
+    // }
+    const possibleName =[];  
+    inputWords.forEach((word)=>{
+      if(!this.ignoreWordsArray.includes(word)){
+        possibleName.push(word);
+      }
+    });
+    console.warn(possibleName)
+    return possibleName[0];
+    ///return inputWords[inputWords.length - 1];
   }
 
   startButtonAnimation(btnId) {
