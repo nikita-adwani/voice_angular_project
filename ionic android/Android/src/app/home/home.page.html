@@ -12,11 +12,11 @@
 
     <div class="frame" (click)=startConversing() class="mic" id="micButton">
         <input type="checkbox" id="cb-1" name="cb" class="checkbox">
-        <label for="cb-1" class="label"></label>
+
         <div class="microphone">
             <svg width="100px" height="100px" viewBox="0 0 100 100">
-                <circle class="circle" cx="50" cy="50" r="47"/>
-            </svg>
+                        <circle class="circle" cx="50" cy="50" r="47"/>
+                    </svg>
             <div class="icon">
                 <div class="body">
                     <div class="fill"></div>
@@ -24,6 +24,7 @@
                 <div class="foot_v"></div>
                 <div class="foot_h"></div>
             </div>
+            <label for="cb-1" class="label"></label>
             <div class="dots">
                 <div class="dot dot-1"></div>
                 <div class="dot dot-2"></div>
@@ -31,4 +32,37 @@
             </div>
         </div>
     </div>
+
 </ion-content>
+
+<ion-card class="card">
+
+    <ion-item>
+        <ion-avatar item-start>
+            <img src="assets\icon\favicon.png">
+        </ion-avatar>
+        <h2>Marty McFly</h2>
+
+    </ion-item>
+
+    <img src="assets\icon\prashant.jpg">
+
+    <ion-card-content>
+        <p>Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?! Whoa. This is heavy.</p>
+    </ion-card-content>
+
+    <ion-row>
+        <ion-col>
+            <button ion-button icon-start clear small>
+              <ion-icon name="md-arrow-round-back"></ion-icon>
+              <div>cancle</div>
+            </button>
+        </ion-col>
+        <ion-col align-self-center text-center>
+            <ion-note>
+                11h ago
+            </ion-note>
+        </ion-col>
+    </ion-row>
+
+</ion-card>
