@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from "@angular/core";
 import { DataServiceService } from "src/app/services/dataService.service";
 
 import { Animation } from "@ionic/core";
+import { IWindow } from '../speechInterface';
 
 @Component({
   selector: "app-home",
@@ -13,6 +14,7 @@ export class HomePage {
   webkitSpeechRecognition: any;
   mappedData: any;
   public intentTypes: any;
+  // public speak :any;
 
   @ViewChild("resultDiv") resultDiv: ElementRef;
 
@@ -43,8 +45,28 @@ export class HomePage {
       },
       {
         intent: "detailIntent",
-        input: ["give", "details", "student", "named", "what", "name", "who"],
+        input: ["give", "details", "student", "named", "what", "name", "who","information"],
         response: "Give me a second. I think you are looking for "
+      },
+      {
+        intent: "ignoreIntent",
+        input: [
+          "give",
+          "details",
+          "about",
+          "all",
+          "show",
+          "me",
+          "the",
+          "of",
+          "in",
+          "can",
+          "please",
+          "tell",
+          "information",
+          "named","name",
+          "what","who"
+        ]
       }
     ];
     console.log(this.intentTypes);
@@ -63,46 +85,20 @@ export class HomePage {
       let res = resObj;
 
       this.saySomething(resObj["speech"]);
-      // if (res.length > 1) {
-      //  speech = "I found " + res.length + " students named " + studentName;
-      //   this.saySomething(speech);
-
-      //   res.forEach(item => {
-      //     let speech = item.firstName + " " + item.lastName + ",";
-      //     this.saySomething(speech);
-      //   });
-      // }
-
-      // if (res.length === 1) {
-      //  speech =
-      //     "I found 1 student named " +
-      //     studentName +
-      //     ", " +
-      //     res[0].firstName +
-      //     " " +
-      //     res[0].lastName;
-      //   this.saySomething(speech);
-      // }
-
-      // if (res.length === 0) {
-      //    speech =
-      //     "I did not find any students with the name "+ studentName +", please try again.";
-      //   this.saySomething(speech);
-      // }
     });
   }
 
   startConversing() {
     let classThis = this;
-
-    // 'speak.this("Hii, I am Databot . I am here to help you. you can talk to me now.")';
-    // saySomething.this.speak("Hii, I am Databot . I am here to help you. you can talk to me now.");
-
+    // classThis.saySomething(
+    //   "Hi, I am Databot . Welcome to SSISM . I am here to help you . you can talk to me now."
+    // );
+    // saySomething.stop();
     if ("webkitSpeechRecognition" in window) {
-      // speak("Hii, I am Databot . I am here to help you. you can talk to me now.");
-
+      const {webkitSpeechRecognition} : IWindow = <IWindow>window;
       var speechRecognizer = new webkitSpeechRecognition();
-      // classThis.saySomething.speak("hiii how is uu????");
+      //  classThis.saySomething("Hi, I am Databot . Welcome to SSISM . I am here to help you . you can talk to me now.");
+
       speechRecognizer.continuous = true; //Controls whether continuous results are returned for each recognition, or only a single result.
       speechRecognizer.interimResults = true; //Controls whether interim results should be returned (true) or not (false.) Interim results are results that are not yet final
       speechRecognizer.lang = "en-IN";
@@ -175,10 +171,12 @@ export class HomePage {
         "Your browser is not supported. If google chrome, please upgrade!";
     }
   }
+  saySomethingspeak(arg0: string): any {
+    throw new Error("Method not implemented.");
+  }
 
   saySomething(speechresult) {
     let msg = new SpeechSynthesisUtterance(speechresult);
-
     setTimeout(() => {
       console.log(window.speechSynthesis.getVoices());
 
@@ -186,14 +184,14 @@ export class HomePage {
 
       // msg.voice = voices[8]; // try changing the number and hear different voices.
       // msg.voiceURI = "native";
-    //  msg.default = false;
-    msg.lang = "en-GB";
-    //  msg.localService = false;
-    //  msg.name = "Google UK English Female";
-     msg.voiceURI = "Google UK English Female";
-      msg.volume = 1; // 0 to 1
-      msg.rate = 1; // 0.1 to 10
-      msg.pitch = 0; //0 to 2
+      //  msg.default = false;
+      msg["lang"] = "en-GB";
+      //  msg.localService = false;
+      msg["name"] = "Google UK English Female";
+      msg["voiceURI"] = "Google UK English Female";
+      msg["volume"] = 1; // 0 to 1
+      msg["rate"] = 1; // 0.1 to 10
+      msg["pitch"] = 0; //0 to 2
 
       console.log(speechresult);
       window.speechSynthesis.speak(msg);
@@ -221,7 +219,7 @@ export class HomePage {
           tempIntent["response"] = tempIntent["response"].replace("Bye", found);
           console.log("found", found, tempIntent);
         }
-        
+
         currentIntent.push(tempIntent);
       }
     });

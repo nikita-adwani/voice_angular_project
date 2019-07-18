@@ -14,6 +14,7 @@ $bgColor: rgb(236, 229, 229);
     opacity: 1;
 }
 
+$bgColor: orange;
 .frame {
     position: relative;
     // border: 1px solid black;
@@ -165,13 +166,13 @@ $bgColor: rgb(236, 229, 229);
 
 @keyframes dot {
     0% {
-        transform: translateY(5px);
+        transform: translateY(3px);
     }
     50% {
-        transform: translateY(-5px);
+        transform: translateY(-3px);
     }
     100% {
-        transform: translateY(5px)
+        transform: translateY(3px)
     }
 }
 
