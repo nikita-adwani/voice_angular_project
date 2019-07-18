@@ -1,6 +1,9 @@
 var http = require("http");
 const fs = require("fs");
 
+const soundsLike = require("./soundslike");
+
+
 let studentsData = [];
 let errorObject = {
     type: "studentData",
@@ -9,60 +12,13 @@ let errorObject = {
 }
 
 function hideNumber(items) {
-    if (items.Gender === "Male") {
+    if (items.Gender === "Male" || items.Gender === "male") {
         return items.StudentsContactNo;
     } else
-        return ("nhi dena")
+        var str = items.StudentsContactNo.replace(/\d(?=\d{4})/g, "*");
+    return str;
 }
-let soundsLike = [{
-        name: ["laveena"],
-        similarSound: ["lavina", "raveena", "pavina", "kareena", "salena"],
-    }, {
-        name: ["suhasee"],
-        similarSound: ["suhasi", "suhasni", "saucy", "mausi", "forsee"]
-    }, {
-        name: ["laxshmi"],
-        similarSound: ["lockshmi", "lakshmi"]
-    }, {
-        name: ["aanchal"],
-        similarSound: ["aajchal", "anchal"]
-    }, {
-        name: ["aashutosh"],
-        similarSound: ["ashutosh"]
-    }, {
-        name: ["aasma"],
-        similarSound: ["asma"]
-    }, {
-        name: ["aayush"],
-        similarSound: ["ayush"]
-    }, {
-        name: ["aayushi"],
-        similarSound: ["ayushi"]
-    }, {
-        name: ["aakash"],
-        similarSound: ["akash", "aakash"]
-    }, {
-        name: ["akshata"],
-        similarSound: ["akshita"]
-    }, {
-        name: ["ameen"],
-        similarSound: ["amin"]
-    }, {
-        name: ["angoori", "anguri"],
-        similarSound: ["anguri", "angoori", "hungary"]
-    }, {
-        name: ["aprajita"],
-        similarSound: ["aparajita"]
-    }, {
-        name: ["arbaz"],
-        similarSound: ["arbaaz"]
-    },
-    {
-        name: ["adwani"],
-        similarSound: ["advani"]
-    }
 
-]
 fs.readFile("./studentData.json", (err, data) => {
     if (err) {
         console.error(err);
@@ -71,6 +27,10 @@ fs.readFile("./studentData.json", (err, data) => {
     let rawdata = data;
     studentsData = JSON.parse(rawdata);
 });
+// fs.readFile('./soundslike.js', 'utf-8', (err, data) => {
+//     if (err) { throw err; }
+//     console.log('data: ', data);
+// });
 //create a server object:
 http
     .createServer(function(req, res) {
@@ -82,8 +42,13 @@ http
             "Access-Control-Allow-Headers",
             "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers"
         );
-
+        // var searchItem;
+        // if (searchItem == "alpha") {
         let searchName = (req.url.split("/"))[1];
+        // }
+        //else if (searchItem == "numeric") {
+        //     let searchId = (req.url.split("/"))[3];
+        // }
 
         console.log(searchName, req.url)
         let filteredData = [];
@@ -99,6 +64,7 @@ http
         if (foundSoundsLike.length > 0) {
             searchName = foundSoundsLike[0].name;
         }
+
         if (studentsData || studentsData.getStudentDetail) {
             filteredData = studentsData.getStudentDetail.filter(function(item) {
 
@@ -107,7 +73,7 @@ http
 
                     return filteredData;
                 }
-                console.log(filteredData);
+                //  console.log(filteredData);
             });
 
             mappedData = filteredData.map(function(items) {
@@ -154,6 +120,9 @@ http
 
             res.write(JSON.stringify(errorObject));
         }
+        var url = req.url;
+
+
 
         res.end(); //end the response  
     })
