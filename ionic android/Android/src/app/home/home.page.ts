@@ -13,6 +13,7 @@ export class HomePage {
   window: any = window;
   webkitSpeechRecognition: any;
   mappedData: any;
+  showLoader = true;
   public intentTypes: any;
   // public speak :any;
 
@@ -103,22 +104,17 @@ export class HomePage {
       speechRecognizer.interimResults = true; //Controls whether interim results should be returned (true) or not (false.) Interim results are results that are not yet final
       speechRecognizer.lang = "en-IN";
       speechRecognizer.start();
-
       this.startButtonAnimation("micButton");
       var finalTranscripts = "";
-
       speechRecognizer.onresult = function(event) {
         console.log("im here", event);
         var interimTranscripts = "";
         for (var i = event.resultIndex; i < event.results.length; i++) {
           var transcript = event.results[i][0].transcript;
-
           console.log("the transcript =", transcript);
-
           // Break the transcript into words - its a sentence
           let inputWords = transcript.split(" ");
           console.log("inputWords", inputWords);
-
           let foundIntent = [];
           console.log(classThis.intentTypes);
           foundIntent = classThis.getIntent(inputWords, classThis.intentTypes);
@@ -179,9 +175,7 @@ export class HomePage {
     let msg = new SpeechSynthesisUtterance(speechresult);
     setTimeout(() => {
       console.log(window.speechSynthesis.getVoices());
-
       let voices = window.speechSynthesis.getVoices();
-
       // msg.voice = voices[8]; // try changing the number and hear different voices.
       // msg.voiceURI = "native";
       //  msg.default = false;
