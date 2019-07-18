@@ -15,9 +15,11 @@ export class HomePage {
   mappedData: any;
   showLoader = true;
   public intentTypes: any;
+  searchName :any;
   // public speak :any;
 
   @ViewChild("resultDiv") resultDiv: ElementRef;
+  dataServiceService: any;
 
   constructor(public dataService: DataServiceService) {
     this.intentTypes = [
@@ -75,10 +77,15 @@ export class HomePage {
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
+    // this.getStudentDetails()
   }
 
   getStudentDetails(studentName) {
     // console.log(input);
+    this.dataService.getStudentDetails(this.searchName).subscribe(input=>{
+      this.searchName =input;
+      console.log(input)
+    })
     let speech = "";
     this.dataService.getStudentDetails(studentName).subscribe(resObj => {
       console.log(resObj);

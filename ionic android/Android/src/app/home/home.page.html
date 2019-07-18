@@ -1,3 +1,31 @@
+<ion-card class="card">
+
+    <ion-item>
+        <ion-avatar item-start>
+            <img src="assets\icon\favicon.png">
+        </ion-avatar>
+        <h2>prashant Malviya</h2>
+
+    </ion-item>
+
+    <img src="assets\icon\prashant.jpg">
+
+    <ion-card-content>
+        <p>Hello i am prashant and i am 19 years old i am persuing my graduation study from sant singaji institute of science and management</p>
+    </ion-card-content>
+
+    <ion-row>
+        <ion-col>
+            <ion-button color="danger">Cancel</ion-button>
+
+
+        </ion-col>
+        <ion-col align-self-center text-center></ion-col>
+
+
+    </ion-row>
+
+</ion-card>
 <ion-header>
     <ion-toolbar>
         <ion-title>
@@ -9,14 +37,13 @@
 <ion-content>
 
     <div id="resultDiv" #resultDiv></div>
-
-    <div class="frame" (click)=startConversing() *ngIf="showLoader" class="mic" id="micButton">
+    <div class="frame" (click)=startConversing() class="mic" id="micButton">
         <input type="checkbox" id="cb-1" name="cb" class="checkbox">
-        <label for="cb-1" class="label"></label>
+
         <div class="microphone">
             <svg width="100px" height="100px" viewBox="0 0 100 100">
-                <circle class="circle" cx="50" cy="50" r="47"/>
-            </svg>
+                        <circle class="circle" cx="50" cy="50" r="47"/>
+                    </svg>
             <div class="icon">
                 <div class="body">
                     <div class="fill"></div>
@@ -24,6 +51,7 @@
                 <div class="foot_v"></div>
                 <div class="foot_h"></div>
             </div>
+            <label for="cb-1" class="label"></label>
             <div class="dots">
                 <div class="dot dot-1"></div>
                 <div class="dot dot-2"></div>
