@@ -85,7 +85,6 @@ export class HomePage {
       this.searchName =input;
       console.log(input)
     })
-  
     let speech = "";
     this.dataService.getStudentDetails(studentName).subscribe(resObj => {
       console.log(resObj);
