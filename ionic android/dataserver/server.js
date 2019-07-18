@@ -3,16 +3,15 @@ const fs = require("fs");
 
 let studentsData = [];
 let errorObject = {
-        // error: "Not Found",
-        // msg: "The details you were looking for was not found"
-        type: "studentData",
-        speech: "The details you were looking for was not found",
-        // data: mappedData
-    }
-    //sounds be same
+    type: "studentData",
+    speech: "The details you were looking for was not found",
 
-function hideNumber(item) {
-    return item.contactNumber;
+}
+
+function hideNumber(item, item) {
+    if (item.gender === "Female") {
+        return item.contactNumber;
+    }
 }
 let soundsLike = [{
         name: ["laveena"],
@@ -49,7 +48,7 @@ let soundsLike = [{
         similarSound: ["amin"]
     }, {
         name: ["angoori", "anguri"],
-        similarSound: ["anguri", "angoori"]
+        similarSound: ["anguri", "angoori", "hungary"]
     }, {
         name: ["aprajita"],
         similarSound: ["aparajita"]
@@ -95,8 +94,6 @@ http
         if (foundSoundsLike.length > 0) {
             searchName = foundSoundsLike[0].name;
         }
-
-
         if (studentsData || studentsData.getStudentDetail) {
             filteredData = studentsData.getStudentDetail.filter(function(item) {
 
@@ -108,7 +105,7 @@ http
             });
             mappedData = filteredData.map(function(items) {
                 return {
-                    contactNumber: hideNumber(items),
+                    contactNumber: items,
                     dob: items.dob,
                     father: items.Fathers_name,
                     fatherContactNumber: items.FathersContactNo,

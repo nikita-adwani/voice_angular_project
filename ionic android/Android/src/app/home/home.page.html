@@ -13,7 +13,11 @@
     <ion-card-content>
         <p>Hello i am prashant and i am 19 years old i am persuing my graduation study from sant singaji institute of science and management</p>
     </ion-card-content>
-
+    <ion-card-content>
+        <div *ngFor="let student of getUserDeatils">
+            <div>{{student.firstName}}</div>
+        </div>
+    </ion-card-content>
     <ion-row>
         <ion-col>
             <ion-button color="danger">Cancel</ion-button>
@@ -42,8 +46,8 @@
 
         <div class="microphone">
             <svg width="100px" height="100px" viewBox="0 0 100 100">
-                        <circle class="circle" cx="50" cy="50" r="47"/>
-                    </svg>
+                <circle class="circle" cx="50" cy="50" r="47" />
+            </svg>
             <div class="icon">
                 <div class="body">
                     <div class="fill"></div>
