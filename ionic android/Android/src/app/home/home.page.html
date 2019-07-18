@@ -15,7 +15,8 @@
     </ion-card-content>
     <ion-card-content>
         <div *ngFor="let student of getUserDeatils">
-            <div>{{student.firstName}}</div>
+            <div>{{student.firstName}} {{student.lastName}}</div>
+            <!-- <div>{{student.lastName}}</div> -->
         </div>
     </ion-card-content>
     <ion-row>
@@ -24,9 +25,6 @@
 
 
         </ion-col>
-        <ion-col align-self-center text-center></ion-col>
-
-
     </ion-row>
 
 </ion-card>
