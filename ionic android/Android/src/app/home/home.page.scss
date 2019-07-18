@@ -66,17 +66,26 @@
         cursor: pointer;
     }
     
-    .card {
+    .img {
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        width: 300px;
+    }
+    
+    .card {
+        position: relative;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        width: auto;
         // margin-left: 60%;
         text-align: center;
         font-family: arial;
     }
     
+    #resultDiv {
+        margin: auto;
+    }
+    
     .microphone {
         position: absolute;
-        width: 100px;
+        width: auto;
         height: 100px;
         top: 150px;
         left: 150px;
