@@ -1,3 +1,33 @@
+<ion-card class="card">
+
+    <ion-item>
+        <ion-avatar item-start>
+            <img src="assets\icon\favicon.png">
+        </ion-avatar>
+        <h2>prashant Malviya</h2>
+
+    </ion-item>
+
+    <img src="assets\icon\prashant.jpg">
+
+    <ion-card-content>
+        <p>hello,My name is prashant malviya.I am from harda></p>
+    </ion-card-content>
+
+    <ion-row>
+        <ion-col>
+            <ion-button color="tertiary">cancle</ion-button>
+
+
+        </ion-col>
+        <ion-col align-self-center text-center>
+            <ion-note>
+                Nautanki
+            </ion-note>
+        </ion-col>
+    </ion-row>
+
+</ion-card>
 <ion-header>
     <ion-toolbar>
         <ion-title>
@@ -6,62 +36,29 @@
     </ion-toolbar>
 </ion-header>
 
+<ion-content>
 
-<div id="resultDiv" #resultDiv></div>
-<div class="frame" (click)=startConversing() class="mic" id="micButton">
-    <input type="checkbox" id="cb-1" name="cb" class="checkbox">
+    <div id="resultDiv" #resultDiv></div>
+    <div class="frame" (click)=startConversing() class="mic" id="micButton">
+        <input type="checkbox" id="cb-1" name="cb" class="checkbox">
 
-    <div class="microphone">
-        <svg width="100px" height="100px" viewBox="0 0 100 100">
-            <circle class="circle" cx="50" cy="50" r="47" />
-        </svg>
-        <div class="icon">
-            <div class="body">
-                <div class="fill"></div>
+        <div class="microphone">
+            <svg width="100px" height="100px" viewBox="0 0 100 100">
+                        <circle class="circle" cx="50" cy="50" r="47"/>
+                    </svg>
+            <div class="icon">
+                <div class="body">
+                    <div class="fill"></div>
+                </div>
+                <div class="foot_v"></div>
+                <div class="foot_h"></div>
             </div>
-            <div class="foot_v"></div>
-            <div class="foot_h"></div>
-        </div>
-        <label for="cb-1" class="label"></label>
-        <div class="dots">
-            <div class="dot dot-1"></div>
-            <div class="dot dot-2"></div>
-            <div class="dot dot-3"></div>
+            <label for="cb-1" class="label"></label>
+            <div class="dots">
+                <div class="dot dot-1"></div>
+                <div class="dot dot-2"></div>
+                <div class="dot dot-3"></div>
+            </div>
         </div>
     </div>
-</div>
-<!-- 
-<ion-card class="card">
-
-    <ion-item>
-         <ion-avatar item-start>
-            <img src="assets\icon\favicon.png">
-        </ion-avatar> -->
-<!-- <h2>prashant Malviya</h2> -->
-<!-- 
-    </ion-item>
-
-    <img src="assets\icon\prashant.jpg">
-
-    <ion-card-content>
-        <p>hello,My name is prashant malviya.I am from harda></p>
-    </ion-card-content>
-    <ion-card-content>
-        <div *ngFor="let student of getUserDeatils">
-            <div>{{student.firstName}}</div>
-        </div>
-    </ion-card-content>
-    <ion-row>
-        <ion-col>
-            <ion-button color="tertiary">cancle</ion-button>
-        </ion-col>
-        <ion-col align-self-center text-center>
-            <ion-note>
-                02-12-1999
-            </ion-note>
-        </ion-col>
-    </ion-row>
-
-</ion-card>
-
-<ion-content>  -->
+</ion-content>
