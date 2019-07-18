@@ -11,27 +11,7 @@
         opacity: 1;
     }
     
-    $bgColor: orange;
-    .frame {
-        position: relative;
-        // border: 1px solid black;
-        // top: 50%;
-        // left: 50%;
-        // width: 400px;
-        // height: 400px;
-        //     margin-top: -200px;
-        //     margin-left: -200px;
-        //     border-radius: 2px;
-        //     box-shadow: 1px 2px 10px 0px rgba(0, 0, 0, 0.3);
-        //     overflow: hidden;
-        //     background: $bgColor;
-        //     background-color: grey;
-        //     color: white;
-        //     font-family: 'Open Sans', Helvetica, sans-serif;
-        //     -webkit-font-smoothing: antialiased;
-        //     -moz-osx-font-smoothing: grayscale;
-    }
-    
+    $bgColor: rgb(255, 255, 255);
     .checkbox {
         display: none;
         &:checked~.microphone {
@@ -71,6 +51,7 @@
         width: 300px;
         // margin-left: 60%;
         text-align: center;
+        align-self: center;
         font-family: arial;
     }
     
@@ -82,7 +63,7 @@
         left: 150px;
         .circle {
             fill: none;
-            stroke: rgb(197, 197, 199);
+            stroke: rgb(255, 0, 0);
             stroke-width: 3;
             stroke-linecap: round;
             transform-origin: 50% 50%;
@@ -97,7 +78,7 @@
                 position: relative;
                 width: 24px;
                 height: 52px;
-                background: rgb(172, 171, 177);
+                background: rgb(255, 0, 0);
                 border-radius: 12px;
                 .fill {
                     position: relative;
@@ -115,7 +96,7 @@
                 height: 15px;
                 top: 51px;
                 left: 10px;
-                background: rgb(25, 0, 255);
+                background: rgb(255, 0, 0);
             }
             .foot_h {
                 position: absolute;
@@ -123,7 +104,7 @@
                 height: 4px;
                 bottom: 0;
                 left: 0;
-                background: rgb(25, 0, 255);
+                background: rgb(255, 0, 0);
                 border-radius: 2px;
             }
         }
@@ -139,7 +120,7 @@
                 width: 10px;
                 height: 10px;
                 border-radius: 50%;
-                background: rgb(25, 0, 255);
+                background: rgb(255, 0, 0);
             }
             .dot-2 {
                 margin: 0 10px;
