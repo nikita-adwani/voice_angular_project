@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from "@angular/core";
 import { DataServiceService } from "src/app/services/dataService.service";
 
 import { Animation } from "@ionic/core";
+import { IWindow } from '../speechInterface';
 
 @Component({
   selector: "app-home",
@@ -17,8 +18,6 @@ export class HomePage {
 
   @ViewChild("resultDiv") resultDiv: ElementRef;
 
-
-  
   constructor(public dataService: DataServiceService) {
     this.intentTypes = [
       {
@@ -46,14 +45,33 @@ export class HomePage {
       },
       {
         intent: "detailIntent",
-        input: ["give", "details", "student", "named", "what", "name", "who"],
+        input: ["give", "details", "student", "named", "what", "name", "who","information"],
         response: "Give me a second. I think you are looking for "
+      },
+      {
+        intent: "ignoreIntent",
+        input: [
+          "give",
+          "details",
+          "about",
+          "all",
+          "show",
+          "me",
+          "the",
+          "of",
+          "in",
+          "can",
+          "please",
+          "tell",
+          "information",
+          "named","name",
+          "what","who"
+        ]
       }
     ];
     console.log(this.intentTypes);
   }
   ngOnInit(): void {
-    
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
   }
@@ -67,32 +85,6 @@ export class HomePage {
       let res = resObj;
 
       this.saySomething(resObj["speech"]);
-       // if (res.length > 1) {
-      //  speech = "I found " + res.length + " students named " + studentName;
-      //   this.saySomething(speech);
-
-      //   res.forEach(item => {
-      //     let speech = item.firstName + " " + item.lastName + ",";
-      //     this.saySomething(speech);
-      //   });
-      // }
-
-      // if (res.length === 1) {
-      //  speech =
-      //     "I found 1 student named " +
-      //     studentName +
-      //     ", " +
-      //     res[0].firstName +
-      //     " " +
-      //     res[0].lastName;
-      //   this.saySomething(speech);
-      // }
-
-      // if (res.length === 0) {
-      //    speech =
-      //     "I did not find any students with the name "+ studentName +", please try again.";
-      //   this.saySomething(speech);
-      // }
     });
   }
 
@@ -103,6 +95,7 @@ export class HomePage {
     // );
     // saySomething.stop();
     if ("webkitSpeechRecognition" in window) {
+      const {webkitSpeechRecognition} : IWindow = <IWindow>window;
       var speechRecognizer = new webkitSpeechRecognition();
       //  classThis.saySomething("Hi, I am Databot . Welcome to SSISM . I am here to help you . you can talk to me now.");
 
@@ -191,25 +184,14 @@ export class HomePage {
 
       // msg.voice = voices[8]; // try changing the number and hear different voices.
       // msg.voiceURI = "native";
-<<<<<<< HEAD
       //  msg.default = false;
-      msg.lang = "en-GB";
+      msg["lang"] = "en-GB";
       //  msg.localService = false;
-      //  msg.name = "Google UK English Female";
-      msg.voiceURI = "Google UK English Female";
-      msg.volume = 1; // 0 to 1
-      msg.rate = 1; // 0.1 to 10
-      msg.pitch = 0; //0 to 2
-=======
-    //  msg.default = false;
-    msg["lang"] = "en-GB";
-    //  msg.localService = false;
-     msg["name"] = "Google UK English Female";
-     msg["voiceURI"] = "Google UK English Female";
+      msg["name"] = "Google UK English Female";
+      msg["voiceURI"] = "Google UK English Female";
       msg["volume"] = 1; // 0 to 1
       msg["rate"] = 1; // 0.1 to 10
       msg["pitch"] = 0; //0 to 2
->>>>>>> b9fd8cc8ada1fda56a8b8e31a7ee929dba44ef4e
 
       console.log(speechresult);
       window.speechSynthesis.speak(msg);
