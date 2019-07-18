@@ -79,7 +79,7 @@ export class HomePage {
   getStudentDetails(studentName) {
     // console.log(input);
     let speech = "";
-    this.dataService.getStudentDetails(studentName).subscribe(resObj => {
+    this.dataService.getStudentDetails((studentName.toLowerCase())).subscribe(resObj => {
       console.log(resObj);
 
       let res = resObj;
