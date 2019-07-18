@@ -8,10 +8,11 @@ let errorObject = {
 
 }
 
-function hideNumber(item, item) {
-    if (item.gender === "Female") {
-        return item.contactNumber;
-    }
+function hideNumber(items) {
+    if (items.Gender === "Male") {
+        return items.StudentsContactNo;
+    } else
+        return ("nhi dena")
 }
 let soundsLike = [{
         name: ["laveena"],
@@ -39,7 +40,7 @@ let soundsLike = [{
         similarSound: ["ayushi"]
     }, {
         name: ["aakash"],
-        similarSound: ["akash"]
+        similarSound: ["akash", "aakash"]
     }, {
         name: ["akshata"],
         similarSound: ["akshita"]
@@ -55,6 +56,10 @@ let soundsLike = [{
     }, {
         name: ["arbaz"],
         similarSound: ["arbaaz"]
+    },
+    {
+        name: ["adwani"],
+        similarSound: ["advani"]
     }
 
 ]
@@ -97,15 +102,17 @@ http
         if (studentsData || studentsData.getStudentDetail) {
             filteredData = studentsData.getStudentDetail.filter(function(item) {
 
-                if (searchName.includes((item.FirstName.trim()).toLowerCase())) {
+                if ((searchName.includes(((item.FirstName).trim()).toLowerCase())) ||
+                    (searchName.includes(((item.Last_name).trim()).toLowerCase()))) {
 
                     return filteredData;
                 }
                 console.log(filteredData);
             });
+
             mappedData = filteredData.map(function(items) {
                 return {
-                    contactNumber: items,
+                    contactNumber: hideNumber(items),
                     dob: items.dob,
                     father: items.Fathers_name,
                     fatherContactNumber: items.FathersContactNo,
@@ -121,19 +128,17 @@ http
 
 
 
+
         }
         if (mappedData.length > 1) {
 
             let responseObj = {
-                    type: "studentData",
-                    speech: "I found " + mappedData.length + " , " + searchName + ", whose details do you want?",
-                    data: mappedData
+                type: "studentData",
+                speech: "I found " + mappedData.length + " , " + searchName + ", whose details do you want?",
+                data: mappedData
 
-                }
-                // mappedData.forEach(items => {
-                //     let speech = items.firstName + " " + items.lastName + ",";
-                //     this.saySomething(speech);
-                // });
+            }
+
 
             res.write(JSON.stringify(responseObj));
             // console.log("hii")
@@ -153,4 +158,4 @@ http
         res.end(); //end the response  
     })
 
-.listen(8081); //the server object listens on port 8081
+.listen(8081); //the server object listens on port 8081s
