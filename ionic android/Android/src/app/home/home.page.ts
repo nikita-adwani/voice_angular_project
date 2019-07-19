@@ -101,8 +101,15 @@ export class HomePage {
         ]
       }
     ];
+
     console.log(this.intentTypes);
   }
+  ignoreWordsArray = ["give","details","about","all","show","me","the","of", "in", "can", 
+                     "please", "tell", "information", "named", "name","what","who","and",
+                     "cave","related","to","something","is","not","ignore","detailed","this","that","love",
+                     "bla-bla","so","ban","pollusion","behn","bolo","ji","china","informations","detail",
+                     "someone","everything","every","profile","us"
+  ];
   ngOnInit(): void {}
 
   
@@ -255,7 +262,17 @@ export class HomePage {
 
   getStudentName(inputWords) {
     //write logic to remove unwanted words to get to the name of the student
-    return inputWords[inputWords.length - 1];
+    // return inputWords[inputWords.length - 1];
+
+    const possibleName = [];
+    inputWords.forEach(word => {
+      if (!this.ignoreWordsArray.includes(word)) {
+        possibleName.push(word);
+      }
+    });
+    console.warn(possibleName);
+    return possibleName[0];
+    ///return inputWords[inputWords.length - 1];
   }
 
   startSpeechAnimation() {
