@@ -12,11 +12,10 @@
     <div class="microphone-container animated zoomIn" id="micButton" #micButton (click)="startConversing($event)">
         <!-- <input type="checkbox" id="cb-1" name="cb" class="checkbox" (change)="startConversing($event)"
             [checked]="microphone" [(ngModel)]="microphone"> -->
-
         <div class="microphone">
             <svg width="100px" height="100px" viewBox="0 0 100 100">
                 <circle class="circle" cx="50" cy="50" r="47" />
-            </svg>
+                </svg>
             <div class="icon">
                 <div class="body">
                     <div class="fill"></div>
@@ -35,25 +34,29 @@
 
     <div class="resultDiv animated zoomInUp" id="resultDiv" #resultDiv>Click mic and say Hello, to get started</div>
 
-    <div *ngIf="getUserDetails?.length==1" class=" animated zoomInUp">
+    <div *ngIf="getUserDetails?.length==1" class="animated zoomInUp">
         <ion-card class="card" *ngFor="let student of getUserDetails">
-            <img src="./assets/images/male.png" *ngIf="student.gender === 'male' " />
-            <img src="./assets/images/female.png" *ngIf="student.gender === 'female' " />
+            <img src="./assets/images/male.png" *ngIf="student.gender ===
+                    'male'" />
+            <img src="./assets/images/female.png" *ngIf="student.gender ===
+                    'female'" />
 
             <ion-card-header>
-                <ion-card-subtitle>{{student.firstName}} </ion-card-subtitle>
-                <ion-card-title>{{student.lastName}}</ion-card-title>
+                <ion-card-title>{{student.firstName}}
+                </ion-card-title>
+                <ion-card-subtitle>{{student.lastName}}</ion-card-subtitle>
             </ion-card-header>
             <ion-card-content>
-                Hello! My name is {{student.firstName}}, {{student.lastName}}, and my father's
-                name is {{student.father}}.
+                Hello! My name is {{student.firstName}}, {{student.lastName}}, and my father's name is {{student.father}}.
             </ion-card-content>
         </ion-card>
     </div>
 
-    <div *ngIf="getUserDetails?.length>1" class="selectStudent animated zoomInUp">
+    <div *ngIf="getUserDetails?.length>1" class="selectStudent animated
+            zoomInUp">
         <div *ngFor="let student of getUserDetails" class="inline-block">
-            <ion-button color="light">{{student.firstName}} {{student.lastName}}</ion-button>
+            <ion-button color="light">{{student.firstName}} {{student.lastName}}
+            </ion-button>
         </div>
     </div>
 
