@@ -30,11 +30,13 @@ export class HomePage {
   @ViewChild("micButton") micButton: ElementRef;
   dataServiceService: any;
   public getUserDetails: any;
+  showCard: boolean;
 
   constructor(
     public dataService: DataServiceService,
     private ref: ChangeDetectorRef
   ) {
+    
     this.intentTypes = [
       {
         intent: "helloIntent",
@@ -113,8 +115,15 @@ export class HomePage {
         let res = resObj;
         this.getUserDetails = resObj.data;
         console.log(this.getUserDetails);
+        if (this.getUserDetails.length > 0) {
+          this.showCard = true;
+        } else {
+          this.showCard = false;
+        }
         this.ref.detectChanges();
+        
         this.saySomething(resObj["speech"]);
+      
       });
   }
 
