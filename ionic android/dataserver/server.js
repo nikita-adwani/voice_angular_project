@@ -38,28 +38,29 @@ http
         );
 
         if (req.url !== "/favicon.ico") {
-            let searchName = req.url.split("/")[1];
+            let searchName = req.url.split("/")[2];
+
+            let urlPattern = req.url.split("/");
+
+            let urlType = urlPattern[1];
+            let idOrName = urlPattern[2];
+            let searchBy = urlPattern[3];
+
+            console.log(idOrName)
+
             let filteredData = [];
             let mappedData = [];
-
-            //matching anything in the sounds like then use the name and compare
-            let foundSoundsLike = soundsLike.words.filter(soundItem => {
-                if (soundItem.similarSound.includes(searchName.trim().toLowerCase())) {
-                    return soundItem;
-                }
-            });
-
-            if (foundSoundsLike.length > 0) {
-                searchName = foundSoundsLike[0].name;
-            }
 
             if (studentsData || studentsData.getStudentDetail) {
                 let numericParams = Number(searchName);
 
-                if (isNaN(numericParams)) {
-                    filteredData = findByName(searchName, studentsData.getStudentDetail);
+                //if (isNaN(numericParams)) {
+                if (idOrName === "name") {
+                    console.log("i am here")
+                    filteredData = findByName(searchBy, studentsData.getStudentDetail);
+
                 } else {
-                    filteredData = findById(searchName, studentsData.getStudentDetail);
+                    filteredData = findById(searchBy, studentsData.getStudentDetail);
                 }
                 mappedData = filteredData.map(function(items) {
                     return {
@@ -113,6 +114,21 @@ http
 .listen(8081); //the server object listens on port 8081
 
 function findByName(searchName, studentDetail) {
+
+    searchName = searchName.trim().toLowerCase();
+
+    //matching anything in the sounds like then use the name and compare
+    let foundSoundsLike = soundsLike.words.filter(soundItem => {
+        if (soundItem.similarSound.includes(searchName.trim().toLowerCase())) {
+            return soundItem;
+        }
+    });
+
+    if (foundSoundsLike.length > 0) {
+        searchName = foundSoundsLike[0].name;
+    }
+
+
     return studentDetail.filter(function(item) {
         if (searchName.includes(item.FirstName.trim().toLowerCase()) || searchName.includes(item.Last_name.trim().toLowerCase())) {
             return item;

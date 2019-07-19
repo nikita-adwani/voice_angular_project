@@ -8,7 +8,13 @@ import { environment } from "../../environments/environment";
 export class DataServiceService {
   constructor(private http: HttpClient) {}
   dataUrl = environment.dataURL;
+
   getStudentDetails(input) {
-    return this.http.get(this.dataUrl +"/"+ input);
+    return this.http.get(this.dataUrl +"/"+"student/name/"+ input);
   }
+
+  getStudentDetailsById(input) {
+    return this.http.get(this.dataUrl +"/"+"student/id/"+ input);
+  }
+
 }

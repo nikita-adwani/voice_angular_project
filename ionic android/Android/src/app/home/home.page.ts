@@ -126,6 +126,15 @@ export class HomePage {
       });
   }
 
+  getStudentById(id){
+    console.log(id);
+    this.dataService.getStudentDetailsById(id).subscribe((resObj:any) =>{
+      this.getUserDetails = resObj.data;
+      this.ref.detectChanges();
+      this.saySomething(resObj["speech"]);
+    });
+  }
+
   startConversing(evt) {
     let classThis = this;
     this.getUserDetails = [];

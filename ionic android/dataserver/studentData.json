@@ -11203,6 +11203,33 @@
             "ConfirmFrmAcc": "Yes",
             "GraduationStatus": "Running",
             "StudentStatus": "Active"
+        },
+        {
+            "MasterId": 2563,
+            "Reg_students_id": ,
+            "Allotted_id": "Alloted",
+            "Enrollment_no": "null",
+            "FirstName": "sonakshi",
+            "Last_name": "yadav",
+            "Fathers_name": "Gajanand",
+            "Gender": "Female",
+            "Caste": "obc",
+            "dob": "",
+            "StudentsContactNo": "7692089170",
+            "FathersContactNo": "7692089170",
+            "Stream": "",
+            "Semester": "III",
+            "Year": "II",
+            "Village": "22",
+            "Reg_by": "4",
+            "EnrollmentNo": "",
+            "MailId": "",
+            "AadharNo": "",
+            "ImgName": "",
+            "JoinBatch": 2018,
+            "ConfirmFrmAcc": "Yes",
+            "GraduationStatus": "Running",
+            "StudentStatus": "Active"
         }
     ],
 
