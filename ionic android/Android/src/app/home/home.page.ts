@@ -190,7 +190,6 @@ export class HomePage {
     let msg = new SpeechSynthesisUtterance(speechresult);
     let voices = window.speechSynthesis.getVoices();
     setTimeout(() => {
-      // console.log(window.speechSynthesis.getVoices());
       let voices = window.speechSynthesis.getVoices();
 
       let selectedVoice = voices.filter(voice => {
@@ -246,10 +245,17 @@ export class HomePage {
       if (!this.ignoreWordsArray.includes(word)) {
         possibleName.push(word);
       }
+      
     });
+    if(inputWords!== possibleName ){
+      console.error("please speak the valid name to find details");
+    this.saySomething("please speak the valid name to find details");
+    }
     console.warn(possibleName);
+    
     return possibleName[0];
-    ///return inputWords[inputWords.length - 1];
+   
+   
   }
 
   startSpeechAnimation() {
