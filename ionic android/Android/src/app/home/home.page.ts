@@ -82,11 +82,51 @@ export class HomePage {
 
     console.log(this.intentTypes);
   }
-  ignoreWordsArray = ["give","details","about","all","show","me","the","of", "in", "can", 
-                     "please", "tell", "information", "named", "name","what","who","and",
-                     "cave","related","to","something","is","not","ignore","detailed","this","that","love",
-                     "bla-bla","so","ban","pollusion","behn","bolo","ji","china","informations","detail",
-                     "someone","everything","every","profile","us"
+  ignoreWordsArray = [
+    "give",
+    "details",
+    "about",
+    "all",
+    "show",
+    "me",
+    "the",
+    "of",
+    "in",
+    "can",
+    "please",
+    "tell",
+    "information",
+    "named",
+    "name",
+    "what",
+    "who",
+    "and",
+    "cave",
+    "related",
+    "to",
+    "something",
+    "is",
+    "not",
+    "ignore",
+    "detailed",
+    "this",
+    "that",
+    "love",
+    "bla-bla",
+    "so",
+    "ban",
+    "pollusion",
+    "behn",
+    "bolo",
+    "ji",
+    "china",
+    "informations",
+    "detail",
+    "someone",
+    "everything",
+    "every",
+    "profile",
+    "us"
   ];
   ngOnInit(): void {}
 
@@ -146,18 +186,19 @@ export class HomePage {
               replyIntent[0].intent === "detailIntent"
             ) {
               studentName = classThis.getStudentName(inputWords);
+              if (studentName != undefined && studentName.length > 0) {
+                //Call the getStudentDetails function after 4 seconds to allow voice to complete speech.
+                setTimeout(() => {
+                  classThis.getStudentDetails(studentName);
+                }, 4000);
+                console.log("im here - after calling getStudentDetails");
 
-              //Call the getStudentDetails function after 4 seconds to allow voice to complete speech.
-              setTimeout(() => {
-                classThis.getStudentDetails(studentName);
-              }, 4000);
-              console.log("im here - after calling getStudentDetails");
+                var speechresult = replyIntent[0].response + studentName;
+                console.log(speechresult);
+                classThis.resultDiv.nativeElement.innerHTML = speechresult;
+                classThis.saySomething(speechresult);
+              }
             }
-
-            var speechresult = replyIntent[0].response + studentName;
-            console.log(speechresult);
-            classThis.resultDiv.nativeElement.innerHTML = speechresult;
-            classThis.saySomething(speechresult);
           } else {
             interimTranscripts += transcript;
           }
@@ -239,23 +280,20 @@ export class HomePage {
   getStudentName(inputWords) {
     //write logic to remove unwanted words to get to the name of the student
     // return inputWords[inputWords.length - 1];
-
     const possibleName = [];
     inputWords.forEach(word => {
       if (!this.ignoreWordsArray.includes(word)) {
         possibleName.push(word);
       }
-      
     });
-    if(inputWords!== possibleName ){
+console.log(possibleName)
+    if (possibleName.length===0) {
       console.error("please speak the valid name to find details");
-    this.saySomething("please speak the valid name to find details");
+      this.saySomething("please speak the valid name to find details");
     }
     console.warn(possibleName);
-    
+
     return possibleName[0];
-   
-   
   }
 
   startSpeechAnimation() {
