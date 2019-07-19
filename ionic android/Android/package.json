@@ -79,22 +79,15 @@
             "cordova-plugin-statusbar": {},
             "cordova-plugin-device": {},
             "cordova-plugin-splashscreen": {},
-            <<
-            << << < HEAD "cordova-plugin-ionic-webview": {
+            "cordova-plugin-ionic-webview": {
                 "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
             },
-            ===
-            === =
-            "cordova-plugin-ionic-webview": {},
-            >>>
-            >>> > d9808b8f6b5cbf3b613c37473858c46e9bb2606c "cordova-plugin-ionic-keyboard": {}
+
+
+            "cordova-plugin-ionic-keyboard": {}
         },
         "platforms": [
             "android"
         ]
-    } <<
-    << << < HEAD
-} ===
-=== =
-} >>>
->>> > d9808b8f6b5cbf3b613c37473858c46e9bb2606c
+    }
+}
