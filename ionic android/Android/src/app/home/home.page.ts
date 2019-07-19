@@ -36,7 +36,6 @@ export class HomePage {
     public dataService: DataServiceService,
     private ref: ChangeDetectorRef
   ) {
-    
     this.intentTypes = [
       {
         intent: "helloIntent",
@@ -71,7 +70,6 @@ export class HomePage {
           "students",
           "find",
           "named",
-          "what",
           "name",
           "who",
           "information"
@@ -82,28 +80,6 @@ export class HomePage {
         intent: "whatIntent",
         input: ["what", "can", "you", "do", "help"],
         response: "I can look up SSISM students by their name."
-      },
-      {
-        intent: "ignoreIntent",
-        input: [
-          "give",
-          "details",
-          "about",
-          "all",
-          "show",
-          "me",
-          "the",
-          "of",
-          "in",
-          "can",
-          "please",
-          "tell",
-          "information",
-          "named",
-          "name",
-          "what",
-          "who"
-        ]
       }
     ];
 
@@ -112,7 +88,12 @@ export class HomePage {
   ignoreWordsArray = [
     "give",
     "details",
+    "find",
     "about",
+    "student",
+    "students",
+    "some",
+    "your",
     "all",
     "show",
     "me",
@@ -157,7 +138,6 @@ export class HomePage {
   ];
   ngOnInit(): void {}
 
-  
   getStudentDetails(studentName) {
     let speech = "Sorry!  ";
     this.dataService
@@ -172,15 +152,14 @@ export class HomePage {
         //   this.showCard = false;
         // }
         this.ref.detectChanges();
-        
+
         this.saySomething(resObj["speech"]);
-      
       });
   }
 
-  getStudentById(id){
+  getStudentById(id) {
     console.log(id);
-    this.dataService.getStudentDetailsById(id).subscribe((resObj:any) =>{
+    this.dataService.getStudentDetailsById(id).subscribe((resObj: any) => {
       this.getUserDetails = resObj.data;
       this.ref.detectChanges();
       this.saySomething(resObj["speech"]);
@@ -224,25 +203,28 @@ export class HomePage {
             console.log(foundIntent);
             let replyIntent = Array.from(foundIntent);
             console.log(replyIntent);
+
             let studentName = "";
             if (
               replyIntent.length > 0 &&
               replyIntent[0].intent === "detailIntent"
             ) {
               studentName = classThis.getStudentName(inputWords);
+
               if (studentName != undefined && studentName.length > 0) {
                 //Call the getStudentDetails function after 4 seconds to allow voice to complete speech.
                 setTimeout(() => {
                   classThis.getStudentDetails(studentName);
                 }, 4000);
                 console.log("im here - after calling getStudentDetails");
-
-                var speechresult = replyIntent[0].response + studentName;
-                console.log(speechresult);
-                classThis.resultDiv.nativeElement.innerHTML = speechresult;
-                classThis.saySomething(speechresult);
+              } else {
+                return false;
               }
             }
+            var speechresult = replyIntent[0].response + studentName;
+            console.log(speechresult);
+            classThis.resultDiv.nativeElement.innerHTML = speechresult;
+            classThis.saySomething(speechresult);
           } else {
             interimTranscripts += transcript;
           }
@@ -330,10 +312,11 @@ export class HomePage {
         possibleName.push(word);
       }
     });
-console.log(possibleName)
-    if (possibleName.length===0) {
+    console.log(possibleName);
+    if (possibleName.length === 0) {
       console.error("please speak the valid name to find details");
-      this.saySomething("please speak the valid name to find details");
+      this.saySomething("Please, speak a valid name");
+      return possibleName;
     }
     console.warn(possibleName);
 
@@ -344,11 +327,13 @@ console.log(possibleName)
     this.micButton.nativeElement.classList.add("microphone-on");
     this.micButton.nativeElement.classList.remove("animated");
     this.micButton.nativeElement.classList.remove("zoomIn");
+    this.micButton.nativeElement.classList.add("zoomOut");
   }
 
   stopSpeechAnimation() {
     this.micButton.nativeElement.classList.add("animated");
     this.micButton.nativeElement.classList.add("zoomIn");
     this.micButton.nativeElement.classList.remove("microphone-on");
+    this.micButton.nativeElement.classList.remove("zoomOut");
   }
 }
