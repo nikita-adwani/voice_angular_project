@@ -1,226 +1,225 @@
 $bgColor: rgb(236, 229, 229);
+
 /* from */
 
 .text-center {
-  text-align: center;
+    text-align: center;
 }
 
 .dot.microphone.circle.icon {
-  opacity: 0.5;
-  transition-property: opacity;
+    opacity: 0.5;
+    transition-property: opacity;
 }
+
+
 /* to */
 
 .dot.microphone.circle.icon:hover {
-  opacity: 1;
+    opacity: 1;
 }
 
 .resultDiv {
-  width: 90%;
-  margin: auto;
-  text-align: center;
-  text-transform: capitalize;
-  font-size: 14px;
+    width: 90%;
+    margin: auto;
+    text-align: center;
+    text-transform: capitalize;
+    font-size: 14px;
 }
 
 $bgColor: rgb(255, 255, 255);
 .microphone-on {
-  display: block;
-  .microphone {
-    .circle {
-      animation: circle 5s linear infinite;
+    display: block;
+    .microphone {
+        .circle {
+            animation: circle 5s linear infinite;
+        }
+        .icon {
+            animation: icon 0.7s ease-in-out both;
+        }
+        .dots {
+            animation: dots 1s ease-in-out both;
+        }
+        .dot-1 {
+            animation: dot 1s ease-in-out infinite;
+        }
+        .dot-2 {
+            animation: dot 1s ease-in-out -0.2s infinite;
+        }
+        .dot-3 {
+            animation: dot 1s ease-in-out -0.4s infinite;
+        }
     }
-    .icon {
-      animation: icon 0.7s ease-in-out both;
-    }
-    .dots {
-      animation: dots 1s ease-in-out both;
-    }
-    .dot-1 {
-      animation: dot 1s ease-in-out infinite;
-    }
-    .dot-2 {
-      animation: dot 1s ease-in-out -0.2s infinite;
-    }
-    .dot-3 {
-      animation: dot 1s ease-in-out -0.4s infinite;
-    }
-  }
 }
 
 .label {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 50;
-  cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 50;
+    cursor: pointer;
 }
 
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  // margin-left: 60%;
-  align-self: center;
-  font-family: arial;
-  width: 90%;
-  margin: auto;
-  margin-top: 40px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    // margin-left: 60%;
+    align-self: center;
+    font-family: arial;
+    width: 90%;
+    margin: auto;
+    margin-top: 40px;
 }
 
 .selectStudent {
-  margin-top: 40px;
-  width: 90%;
-  margin: auto;
+    margin-top: 40px;
+    width: 90%;
+    margin: auto;
 }
 
 .inline-block {
-  display: inline-block;
-  margin: 10px;
-
-  ion-button {
-    min-width: 150px;
-  }
+    display: inline-block;
+    margin: 10px;
+    ion-button {
+        min-width: 150px;
+    }
 }
 
 .microphone-container {
-  position: relative;
-  width: 100px;
-  height: 100px;
-  margin: auto;
-  margin-top: 40px;
-  margin-bottom: 40px;
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
 
 .microphone {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  .circle {
-    fill: none;
-    stroke: rgb(255, 0, 0);
-    stroke-width: 3;
-    stroke-linecap: round;
-    transform-origin: 50% 50%;
-  }
-  .icon {
     position: absolute;
-    width: 24px;
-    height: 66px;
-    top: 16px;
-    left: 38px;
-    .body {
-      position: relative;
-      width: 24px;
-      height: 52px;
-      background: rgb(255, 0, 0);
-      border-radius: 12px;
-      .fill {
-        position: relative;
-        width: 6px;
-        height: 16px;
-        top: 7px;
-        left: 9px;
-        background: $bgColor;
-        border-radius: 3px;
-      }
+    width: 100px;
+    height: 100px;
+    .circle {
+        fill: none;
+        stroke: rgb(255, 0, 0);
+        stroke-width: 3;
+        stroke-linecap: round;
+        transform-origin: 50% 50%;
     }
-    .foot_v {
-      position: absolute;
-      width: 4px;
-      height: 15px;
-      top: 51px;
-      left: 10px;
-      background: rgb(255, 0, 0);
+    .icon {
+        position: absolute;
+        width: 24px;
+        height: 66px;
+        top: 16px;
+        left: 38px;
+        .body {
+            position: relative;
+            width: 24px;
+            height: 52px;
+            background: rgb(255, 0, 0);
+            border-radius: 12px;
+            .fill {
+                position: relative;
+                width: 6px;
+                height: 16px;
+                top: 7px;
+                left: 9px;
+                background: $bgColor;
+                border-radius: 3px;
+            }
+        }
+        .foot_v {
+            position: absolute;
+            width: 4px;
+            height: 15px;
+            top: 51px;
+            left: 10px;
+            background: rgb(255, 0, 0);
+        }
+        .foot_h {
+            position: absolute;
+            width: 24px;
+            height: 4px;
+            bottom: 0;
+            left: 0;
+            background: rgb(255, 0, 0);
+            border-radius: 2px;
+        }
     }
-    .foot_h {
-      position: absolute;
-      width: 24px;
-      height: 4px;
-      bottom: 0;
-      left: 0;
-      background: rgb(255, 0, 0);
-      border-radius: 2px;
+    .dots {
+        opacity: 0;
+        position: absolute;
+        width: 50px;
+        height: 10px;
+        top: 45px;
+        left: 25px;
+        .dot {
+            float: left;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgb(255, 0, 0);
+        }
+        .dot-1 {
+            background: #4eba63;
+        }
+        .dot-2 {
+            margin: 0 10px;
+            background: #f0c419;
+        }
+        .dot-3 {
+            background: #e64c3c;
+        }
     }
-  }
-  .dots {
-    opacity: 0;
-    position: absolute;
-    width: 50px;
-    height: 10px;
-    top: 45px;
-    left: 25px;
-    .dot {
-      float: left;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: rgb(255, 0, 0);
-    }
-
-    .dot-1 {
-      background: #4eba63;
-    }
-
-    .dot-2 {
-      margin: 0 10px;
-      background: #f0c419;
-    }
-
-    .dot-3 {
-      background: #e64c3c;
-    }
-  }
 }
 
 @keyframes circle {
-  0% {
-    stroke-dashoffset: 0;
-    stroke-dasharray: 296 296;
-    transform: rotate(0deg);
-  }
-  100% {
-    stroke-dashoffset: (-296 * 2);
-    stroke-dasharray: 296 296;
-    transform: rotate(360deg);
-  }
+    0% {
+        stroke-dashoffset: 0;
+        stroke-dasharray: 296 296;
+        transform: rotate(0deg);
+    }
+    100% {
+        stroke-dashoffset: (-296 * 2);
+        stroke-dasharray: 296 296;
+        transform: rotate(360deg);
+    }
 }
 
 @keyframes dot {
-  0% {
-    transform: translateY(3px);
-  }
-  50% {
-    transform: translateY(-3px);
-  }
-  100% {
-    transform: translateY(3px);
-  }
+    0% {
+        transform: translateY(3px);
+    }
+    50% {
+        transform: translateY(-3px);
+    }
+    100% {
+        transform: translateY(3px);
+    }
 }
 
 @keyframes icon {
-  0% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  30% {
-    transform: scale(1.1);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(0);
-    opacity: 0;
-  }
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    30% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
 }
 
 @keyframes dots {
-  0%,
-  60% {
-    transform: scale(0);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
+    0%,
+    60% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
