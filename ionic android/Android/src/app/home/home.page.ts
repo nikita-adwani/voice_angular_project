@@ -76,7 +76,29 @@ export class HomePage {
       {
         intent: "whatIntent",
         input: ["what", "can", "you", "do", "help"],
-        response: "I can look up SSIM students by their name."
+        response: "I can look up SSISM students by their name."
+      },
+      {
+        intent: "ignoreIntent",
+        input: [
+          "give",
+          "details",
+          "about",
+          "all",
+          "show",
+          "me",
+          "the",
+          "of",
+          "in",
+          "can",
+          "please",
+          "tell",
+          "information",
+          "named",
+          "name",
+          "what",
+          "who"
+        ]
       }
     ];
 
@@ -130,6 +152,7 @@ export class HomePage {
   ];
   ngOnInit(): void {}
 
+  
   getStudentDetails(studentName) {
     let speech = "Sorry!  ";
     this.dataService
