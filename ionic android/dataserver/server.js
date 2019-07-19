@@ -38,15 +38,7 @@ http
         );
 
         if (req.url !== "/favicon.ico") {
-            // var searchItem;
-            // if (searchItem == "alpha") {
             let searchName = req.url.split("/")[1];
-            // }
-            //else if (searchItem == "numeric") {
-            //     let searchId = (req.url.split("/"))[3];
-            // }
-
-            console.log(searchName, req.url);
             let filteredData = [];
             let mappedData = [];
 
@@ -62,16 +54,13 @@ http
             }
 
             if (studentsData || studentsData.getStudentDetail) {
-                filteredData = studentsData.getStudentDetail.filter(function(item) {
-                    if (
-                        searchName.includes(item.FirstName.trim().toLowerCase()) ||
-                        searchName.includes(item.Last_name.trim().toLowerCase())
-                    ) {
-                        console.log(filteredData);
-                        return filteredData;
-                    }
-                });
+                let numericParams = Number(searchName);
 
+                if (isNaN(numericParams)) {
+                    filteredData = findByName(searchName, studentsData.getStudentDetail);
+                } else {
+                    filteredData = findById(searchName, studentsData.getStudentDetail);
+                }
                 mappedData = filteredData.map(function(items) {
                     return {
                         contactNumber: hideNumber(items),
@@ -87,6 +76,7 @@ http
                     };
                 });
             }
+
             if (mappedData.length > 1) {
                 let responseObj = {
                     type: "studentData",
@@ -99,7 +89,6 @@ http
                 };
 
                 res.write(JSON.stringify(responseObj));
-                // console.log("hii")
             } else if (mappedData.length === 1) {
                 let resObj = {
                     type: "studentData",
@@ -122,3 +111,21 @@ http
     })
 
 .listen(8081); //the server object listens on port 8081
+
+function findByName(searchName, studentDetail) {
+    return studentDetail.filter(function(item) {
+        if (searchName.includes(item.FirstName.trim().toLowerCase()) || searchName.includes(item.Last_name.trim().toLowerCase())) {
+            return item;
+        }
+    })
+
+}
+
+function findById(searchName, studentDetail) {
+    return studentDetail.filter(function(item) {
+        if (searchName.includes(item.MasterId)) {
+            return item;
+        }
+    })
+
+}
