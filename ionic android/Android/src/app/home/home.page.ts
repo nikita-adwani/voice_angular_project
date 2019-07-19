@@ -66,7 +66,10 @@ export class HomePage {
         input: [
           "give",
           "details",
+          "detail",
           "student",
+          "students",
+          "find",
           "named",
           "what",
           "name",
@@ -163,11 +166,11 @@ export class HomePage {
         let res = resObj;
         this.getUserDetails = resObj.data;
         console.log(this.getUserDetails);
-        if (this.getUserDetails.length > 0) {
-          this.showCard = true;
-        } else {
-          this.showCard = false;
-        }
+        // if (this.getUserDetails.length > 0) {
+        //   this.showCard = true;
+        // } else {
+        //   this.showCard = false;
+        // }
         this.ref.detectChanges();
         
         this.saySomething(resObj["speech"]);

@@ -2,7 +2,7 @@ var http = require("http");
 const fs = require("fs");
 
 const soundsLike = require("./soundslike");
-
+const romanLetters = require("./romanLetters");
 let studentsData = [];
 let errorObject = {
     type: "studentData",
@@ -73,7 +73,7 @@ http
                         id: items.MasterId,
                         imageName: items.ImgName,
                         lastName: items.Last_name,
-                        year: items.Year
+                        year: romanNumber(items.Year)
                     };
                 });
             }
@@ -93,12 +93,11 @@ http
             } else if (mappedData.length === 1) {
                 let resObj = {
                     type: "studentData",
-                    speech: "I found " +
-                        mappedData.length +
-                        " Student named: " +
+                    speech: "Hello, My name is " +
                         mappedData[0].firstName +
                         " " +
-                        mappedData[0].lastName,
+                        mappedData[0].lastName + " I am in " + mappedData[0].year + " year and, My father name is " +
+                        mappedData[0].father,
                     data: mappedData
                 };
                 res.write(JSON.stringify(resObj));
@@ -144,4 +143,22 @@ function findById(searchName, studentDetail) {
         }
     })
 
+}
+
+function romanNumber(year) {
+    let romanLetterYear = romanLetters.numbers.filter(yearItem => {
+        console.log(yearItem, year);
+        if (yearItem.romanNumber === year.trim()) {
+            return yearItem;
+        }
+    });
+
+    console.log(romanLetterYear)
+    if (romanLetterYear.length > 0) {
+        console.log("here")
+        year = romanLetterYear[0].ordinalNumber;
+    }
+    console.log(year)
+
+    return year;
 }

@@ -53,12 +53,12 @@
         </ion-card>
     </div>
 
-    <div *ngIf="getUserDetails?.length>1" class="selectStudent animated
-            zoomInUp">
-        <div *ngFor="let student of getUserDetails" class="inline-block">
-            <ion-button color="light" (click)="getStudentById(student.id)">{{student.firstName}} {{student.lastName}}
-            </ion-button>
-        </div>
+    <!-- <div *ngIf="getUserDetails?.length>1" class="selectStudent animated
+            zoomInUp"> -->
+    <div *ngFor="let student of getUserDetails" class="inline-block">
+        <ion-button color="light" (click)="getStudentById(student.id)">{{student.firstName}} {{student.lastName}}
+        </ion-button>
     </div>
+    <!-- </div> -->
 
 </ion-content>
