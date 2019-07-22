@@ -45,22 +45,21 @@ http
             let urlType = urlPattern[1];
             let idOrName = urlPattern[2];
             let searchBy = urlPattern[3];
-
-            console.log(idOrName)
-
             let filteredData = [];
             let mappedData = [];
 
             if (studentsData || studentsData.getStudentDetail) {
                 let numericParams = Number(searchName);
 
-                //if (isNaN(numericParams)) {
-                if (idOrName === "name") {
-                    console.log("i am here")
-                    filteredData = findByName(searchBy, studentsData.getStudentDetail);
 
+                if (idOrName !== undefined) {
+                    if (idOrName === "name") {
+                        filteredData = findByName(searchBy, studentsData.getStudentDetail);
+                    } else {
+                        filteredData = findById(searchBy, studentsData.getStudentDetail);
+                    }
                 } else {
-                    filteredData = findById(searchBy, studentsData.getStudentDetail);
+                    res.write(JSON.stringify("data not found"));
                 }
                 mappedData = filteredData.map(function(items) {
                     return {
@@ -96,7 +95,10 @@ http
                     speech: "Hello, My name is " +
                         mappedData[0].firstName +
                         " " +
-                        mappedData[0].lastName + " I am in " + mappedData[0].year + " year and, My father name is " +
+                        mappedData[0].lastName +
+                        " I am in " +
+                        mappedData[0].year +
+                        " year and, My father name is " +
                         mappedData[0].father,
                     data: mappedData
                 };
@@ -113,7 +115,6 @@ http
 .listen(8081); //the server object listens on port 8081
 
 function findByName(searchName, studentDetail) {
-
     searchName = searchName.trim().toLowerCase();
 
     //matching anything in the sounds like then use the name and compare
@@ -127,13 +128,14 @@ function findByName(searchName, studentDetail) {
         searchName = foundSoundsLike[0].name;
     }
 
-
     return studentDetail.filter(function(item) {
-        if (searchName.includes(item.FirstName.trim().toLowerCase()) || searchName.includes(item.Last_name.trim().toLowerCase())) {
+        if (
+            searchName.includes(item.FirstName.trim().toLowerCase()) ||
+            searchName.includes(item.Last_name.trim().toLowerCase())
+        ) {
             return item;
         }
-    })
-
+    });
 }
 
 function findById(searchName, studentDetail) {
@@ -141,24 +143,19 @@ function findById(searchName, studentDetail) {
         if (searchName.includes(item.MasterId)) {
             return item;
         }
-    })
-
+    });
 }
 
 function romanNumber(year) {
     let romanLetterYear = romanLetters.numbers.filter(yearItem => {
-        console.log(yearItem, year);
         if (yearItem.romanNumber === year.trim()) {
             return yearItem;
         }
     });
 
-    console.log(romanLetterYear)
     if (romanLetterYear.length > 0) {
-        console.log("here")
         year = romanLetterYear[0].ordinalNumber;
     }
-    console.log(year)
 
     return year;
 }
