@@ -51,7 +51,7 @@ http
             if (studentsData || studentsData.getStudentDetail) {
                 let numericParams = Number(searchName);
 
-
+                //if (isNaN(numericParams)) {
                 if (idOrName !== undefined) {
                     if (idOrName === "name") {
                         filteredData = findByName(searchBy, studentsData.getStudentDetail);
