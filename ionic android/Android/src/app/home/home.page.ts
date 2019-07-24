@@ -80,6 +80,11 @@ export class HomePage {
         intent: "whatIntent",
         input: ["what", "can", "you", "do", "help"],
         response: "I can look up SSISM students by their name."
+      },
+      {
+        intent: "missIntent",
+        input: ["miss"],
+        response: "I miss you too."
       }
     ];
 
